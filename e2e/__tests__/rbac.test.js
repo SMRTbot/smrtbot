@@ -63,4 +63,14 @@ describe('Tests roles and ensure-role functionality', () => {
       });
   });
 
+  it('get all users', () => {
+    return request
+      .get('/api/users')
+      .set('Authorization', adminUser.token)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.length).toBe(2);
+      });
+  });
+
 });
