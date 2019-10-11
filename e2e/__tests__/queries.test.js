@@ -56,4 +56,13 @@ describe('Tests roles and ensure-role functionality', () => {
       });
   });
 
+  it('deletes a query', () => {
+    return postQuery(query1)
+      .then(query => {
+        return request
+          .delete(`/api/queries/${query._id}`)
+          .set('Authorization', adminUser.token)
+          .expect(200);
+      }); 
+  });
 });
