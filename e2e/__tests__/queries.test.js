@@ -17,7 +17,7 @@ describe('Tests roles and ensure-role functionality', () => {
 
   const query1 = {
     input: 'This is our string',
-    output: 'This is out output string.'
+    output: 'This is our output string.'
   };
 
   function postQuery(query) {
@@ -49,12 +49,11 @@ describe('Tests roles and ensure-role functionality', () => {
             "__v": 0,
             "_id": Any<String>,
             "input": "This is our string",
-            "output": "This is out output string.",
+            "output": "This is our output string.",
           }
         `
         );
       });
   });
-  //post
-  //get
+
 });
