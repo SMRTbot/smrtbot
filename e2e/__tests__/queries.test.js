@@ -1,12 +1,14 @@
 const Query = require('../../lib/models/query');
-const { signupAdmin, signupUser } = require('../../lib/middleware/signup-admin');
+const {
+  signupAdmin,
+  signupUser
+} = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const db = require('../db');
 
-
 describe('Tests roles and ensure-role functionality', () => {
-  beforeEach(() => dropCollection('users'));
-  beforeEach(() => dropCollection('queries'));
+  beforeEach(() => db.dropCollection('users'));
+  beforeEach(() => db.dropCollection('queries'));
 
   let adminUser = null;
   beforeEach(() => {
@@ -15,7 +17,7 @@ describe('Tests roles and ensure-role functionality', () => {
 
   const query1 = {
     input: 'This is our string',
-    output: 'This is out output string.',
+    output: 'This is out output string.'
   };
 
   function postQuery(query) {
@@ -27,11 +29,32 @@ describe('Tests roles and ensure-role functionality', () => {
       .then(({ body }) => body);
   }
   it('post query to db', () => {
-    
-      return postQuery(query1).then(query => {
+    return postQuery(query1)
+      .then(query => {
         return request
+          .get(`/api/queries/${query._id}`)
+          .set('Authorization', adminUser.token)
+          .expect(200);
       })
-    //post
-    //get
+      .then(({ body }) => {
+        expect(body).toMatchInlineSnapshot(
+          {
+            ...body,
+            _id: expect.any(String)
+            // userRef: expect.any(String)
+          },
+
+          `
+          Object {
+            "__v": 0,
+            "_id": Any<String>,
+            "input": "This is our string",
+            "output": "This is out output string.",
+          }
+        `
+        );
+      });
   });
+  //post
+  //get
 });
