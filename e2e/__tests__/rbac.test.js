@@ -40,18 +40,18 @@ describe('Tests roles and ensure-role functionality', () => {
       .expect(200);
   });
 
-  it.only('Remove admin role', () => {
+  it('Remove admin role', () => {
     return request
       .put(`/api/auth/users/${testUser._id}/roles/admin`)
       .set('Authorization', adminUser.token)
       .then(() => {
         return request
-          .delete(`/api/auth/users/${testUser._id}/roles/'${testUser.roles}'`)
+          .delete(`/api/auth/users/${testUser._id}/roles/${'admin'}`)
           .set('Authorization', adminUser.token)
           .expect(200)
           .then(() => {
             return request
-              .get(`/api/auth/users/${testUser._id}`)
+              .get(`/api/users/${testUser._id}`)
               .set('Authorization', adminUser.token)
               .expect(200)
               .then(({ body }) => {
