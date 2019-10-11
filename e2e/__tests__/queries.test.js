@@ -38,7 +38,7 @@ describe('Tests roles and ensure-role functionality', () => {
           {
             ...body,
             _id: expect.any(String),
-            userRef: expect.any(String) 
+            userRef: expect.any(String)
           },
 
           `
@@ -61,5 +61,47 @@ describe('Tests roles and ensure-role functionality', () => {
         .set('Authorization', adminUser.token)
         .expect(200);
     });
+  });
+
+  it('gets a list of all queries', () => {
+    return Promise.all([
+      postQuery({
+        input: 'This is query one',
+        output: 'This is our output string.'
+      }),
+      postQuery({
+        input: 'This is query two',
+        output: 'This is our output string.'
+      }),
+      postQuery({
+        input: 'This is query three',
+        output: 'This is our output string.'
+      })
+    ])
+      .then(() => {
+        return request
+          .get('/api/queries')
+          .set('Authorization', adminUser.token)
+          .expect(200);
+      })
+      .then(({ body }) => {
+        expect(body.length).toBe(3);
+        expect(body[0]).toMatchInlineSnapshot(
+          {
+            _id: expect.any(String),
+            userRef: expect.any(String)
+          },
+
+          `
+          Object {
+            "__v": 0,
+            "_id": Any<String>,
+            "input": "This is query one",
+            "output": "This is our output string.",
+            "userRef": Any<String>,
+          }
+        `
+        );
+      });
   });
 });
