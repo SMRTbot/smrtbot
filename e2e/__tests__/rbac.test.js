@@ -33,6 +33,11 @@ describe('Tests roles and ensure-role functionality', () => {
 
   });
 
-
+  it('Allows admin to delete user', () => {
+    return request 
+      .delete(`/api/auth/${testUser._id}`)
+      .set('Authorization', adminUser.token)
+      .expect(200);
+  });
 
 });

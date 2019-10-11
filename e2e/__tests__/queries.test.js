@@ -1,4 +1,3 @@
-// const Query = require('../../lib/models/query');
 const { signupAdmin } = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const db = require('../db');
