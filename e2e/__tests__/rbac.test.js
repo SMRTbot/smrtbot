@@ -15,9 +15,9 @@ describe('Tests roles and ensure-role functionality', () => {
     return signupAdmin().then(user => (adminUser = user));
   });
   let testUser = null;
-  beforeEach(() => { 
+  beforeEach(() => {
     return signupUser().then(user => (testUser = user)
-    ); 
+    );
   });
 
 
@@ -34,10 +34,30 @@ describe('Tests roles and ensure-role functionality', () => {
   });
 
   it('Allows admin to delete user', () => {
-    return request 
-      .delete(`/api/auth/${testUser._id}`)
+    return request
+      .delete(`/api/auth/users/${testUser._id}`)
       .set('Authorization', adminUser.token)
       .expect(200);
+  });
+
+  it('Remove admin role', () => {
+    return request
+      .put(`/api/auth/users/${testUser._id}/roles/admin`)
+      .set('Authorization', adminUser.token)
+      .then(() => {
+        return request
+          .delete(`/api/auth/users/${testUser.id}/roles/${testUser.role}`)
+          .set('Authorization', adminUser.token)
+          .expect(200)
+          .then((body) => {
+            console.log(body);
+            return request
+              
+              .get(`/api/auth/users/${body._id}`)
+              .expect(body.roles).toEqual([]);
+
+          });
+      });
   });
 
 });
