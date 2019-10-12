@@ -48,7 +48,7 @@ describe('User me routes', () => {
       postQuery(query1),
       postQuery(query2)
     ])
-      .then(() => {
+      .then(([query1, query2]) => {
         return request
           .put(`/api/me/favorites/${query1._id}`)
           .set('Authorization', testUser.token)
@@ -62,7 +62,7 @@ describe('User me routes', () => {
                   .set('Authorization', testUser.token)
                   .expect(200)
                   .then(({ body }) => {
-                    expect(body.favorites).toBe(query1._id);
+                    expect(body.length).toBe(2);
                   });
               });
           });
