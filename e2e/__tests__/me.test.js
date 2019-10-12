@@ -15,6 +15,10 @@ describe('User me routes', () => {
     input: 'This is our string',
     output: 'This is our output string.'
   };
+  const query2 = {
+    input: 'This is another string',
+    output: 'This is another output string.'
+  };
 
   function postQuery(query) {
     return request
@@ -25,31 +29,49 @@ describe('User me routes', () => {
       .then(({ body }) => body);
   }
 
-  it.skip('can add to user favorites', () => {
+  it('can add to user favorites', () => {
     return postQuery(query1)
       .then(query => {
         return request
           .put(`/api/me/favorites/${query._id}`)
           .set('Authorization', testUser.token)
-          .send(testUser)
           .expect(200);
       })
       .then(({ body }) => {
-        console.log(body);
         expect(body.length).toBe(1);
-        expect(body).toMatchInlineSnapshot(
-          [expect.any(String)],
-
-          `
-          Object {
-            "0": "5da112b7dffca02f9ba8401c",
-          }
-        `
-        );
+        expect(body[0]).toEqual(expect.any(String));
       });
   });
 
-  it('get a list of user favorites', () => {});
+  it('get a list of user favorites', () => {
+    return Promise.all([
+      postQuery(query1),
+      postQuery(query2)
+    ])
+      .then(() => {
+        return request
+          .put(`/api/me/favorites/${query1._id}`)
+          .set('Authorization', testUser.token)
+          .then(() => {
+            return request
+              .put(`/api/me/favorites/${query2._id}`)
+              .set('Authorization', testUser.token)
+              .then(() => {
+                return request
+                  .get(`/api/me/favorites/${testUser._id}`)
+                  .set('Authorization', testUser.token)
+                  .expect(200)
+                  .then(({ body }) => {
+                    expect(body.favorites).toBe(query1._id);
+                  });
+              });
+          });
+
+      });
+    
+
+
+  });
 });
 
 // POST string
