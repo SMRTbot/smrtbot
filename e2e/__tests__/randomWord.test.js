@@ -1,4 +1,4 @@
-const { randomWord, splitString, joinString } = require('../../lib/middleware/randomWord');
+const { randomWord, splitString, joinString, arrayMap } = require('../../lib/middleware/randomWord');
 // const { signupAdmin } = require('../../lib/middleware/signup-admin');
 // const request = require('../request');
 const { dropCollection } = require('../db');
@@ -35,7 +35,13 @@ describe('randomWord', () => {
     expect(result).toEqual('this is a random sentence');
   });
 
-  it('', () => {
-
+  it('returns a proper output', () => {
+    const input = 'the quick brown fox jumped over the lazy dog';
+    const arr = splitString(input);
+    return arrayMap(arr, randomWord())
+      .then(res => {
+        console.log(res);
+      },
+      expect.any(String));
   });
 });
