@@ -21,10 +21,18 @@ describe('randomWord', () => {
       });
   });
 
+  it('expect the', () => {
+    let word = 'the';
+    return randomWord(word)
+      .then(res => {
+        expect(res).toEqual(word);
+      });
+  });
+
   it('splits a sentence into words', () => {
     const sentence = 'this is a random sentence';
     const result = splitString(sentence);
-    
+
     expect(result).toEqual(['this', 'is', 'a', 'random', 'sentence']);
   });
 
@@ -35,13 +43,13 @@ describe('randomWord', () => {
     expect(result).toEqual('this is a random sentence');
   });
 
-  it('returns a proper output', () => {
+  it('returns a transformed string', () => {
     const input = 'the quick brown fox jumped over the lazy dog';
     const arr = splitString(input);
-    return arrayMap(arr, randomWord())
+    return arrayMap(arr, randomWord)
       .then(res => {
         console.log(res);
       },
-      expect.any(String));
+      expect.any(Array));
   });
 });
