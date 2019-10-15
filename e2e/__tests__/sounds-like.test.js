@@ -31,7 +31,7 @@ describe('soundsLike function route implementation', () => {
       .expect(200);
   }
 
-  it.skip('posts a similar sounding query', () => {
+  it('posts a similar sounding query', () => {
     return postQuery(query)
       .then(query => {
         return getQuery(query);

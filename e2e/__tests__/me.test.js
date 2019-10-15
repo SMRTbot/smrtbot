@@ -12,12 +12,10 @@ describe('User me routes', () => {
   });
 
   const query1 = {
-    input: 'This is our string',
-    output: 'This is our output string.'
+    input: 'This is our string'
   };
   const query2 = {
-    input: 'This is another string',
-    output: 'This is another output string.'
+    input: 'This is another string'
   };
 
   function postQuery(query) {

@@ -1,4 +1,4 @@
-const { shortWord } = require('../../lib/middleware/shortWord');
+const shortWord = require('../../lib/middleware/shortWord');
 const { dropCollection } = require('../db');
 
 describe('shortWord', () => {
