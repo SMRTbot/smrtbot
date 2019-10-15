@@ -27,7 +27,7 @@ describe('User me routes', () => {
       .then(({ body }) => body);
   }
 
-  it.only('can add to user favorites', () => {
+  it('can add to user favorites', () => {
     return postQuery(query1)
       .then(query => {
         return request
