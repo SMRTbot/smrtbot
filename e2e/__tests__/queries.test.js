@@ -12,8 +12,7 @@ describe('Tests roles and ensure-role functionality', () => {
   });
 
   const query1 = {
-    input: 'This is our string',
-    output: ''
+    input: 'This is our string'
   };
 
   function postQuery(query) {
@@ -90,15 +89,16 @@ describe('Tests roles and ensure-role functionality', () => {
         expect(body[0]).toMatchInlineSnapshot(
           {
             _id: expect.any(String),
-            userRef: expect.any(String)
+            userRef: expect.any(String),
+            output: expect.any(String)
           },
 
           `
           Object {
             "__v": 0,
             "_id": Any<String>,
-            "input": "This is query two",
-            "output": "This is enquiry 2",
+            "input": "This is query one",
+            "output": Any<String>,
             "userRef": Any<String>,
           }
         `
