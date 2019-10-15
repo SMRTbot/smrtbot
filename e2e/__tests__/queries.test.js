@@ -12,8 +12,7 @@ describe('Tests roles and ensure-role functionality', () => {
   });
 
   const query1 = {
-    input: 'This is our string',
-    output: 'This is our output string.'
+    input: 'This is our string'
   };
 
   function postQuery(query) {
@@ -24,6 +23,7 @@ describe('Tests roles and ensure-role functionality', () => {
       .expect(200)
       .then(({ body }) => body);
   }
+
   it('post query to db', () => {
     return postQuery(query1)
       .then(query => {
@@ -37,7 +37,8 @@ describe('Tests roles and ensure-role functionality', () => {
           {
             ...body,
             _id: expect.any(String),
-            userRef: expect.any(String)
+            userRef: expect.any(String),
+            output: expect.any(String)
           },
 
           `
@@ -45,7 +46,7 @@ describe('Tests roles and ensure-role functionality', () => {
             "__v": 0,
             "_id": Any<String>,
             "input": "This is our string",
-            "output": "This is our output string.",
+            "output": Any<String>,
             "userRef": Any<String>,
           }
         `
@@ -88,15 +89,17 @@ describe('Tests roles and ensure-role functionality', () => {
         expect(body[0]).toMatchInlineSnapshot(
           {
             _id: expect.any(String),
-            userRef: expect.any(String)
+            input: expect.any(String),
+            userRef: expect.any(String),
+            output: expect.any(String)
           },
 
           `
           Object {
             "__v": 0,
             "_id": Any<String>,
-            "input": "This is query one",
-            "output": "This is our output string.",
+            "input": Any<String>,
+            "output": Any<String>,
             "userRef": Any<String>,
           }
         `
