@@ -43,13 +43,22 @@ describe('randomWord', () => {
     expect(result).toEqual('this is a random sentence');
   });
 
-  it('returns a transformed string', () => {
+  it('returns a transformed array', () => {
+    const input = 'the quick brown fox jumped over the lazy dog';
+    const arr = splitString(input);
+    return arrayMap(arr, randomWord)
+      .then(() => {
+        expect.any(Array);
+      });
+  });
+
+  it('transforms a string', () => {
     const input = 'the quick brown fox jumped over the lazy dog';
     const arr = splitString(input);
     return arrayMap(arr, randomWord)
       .then(res => {
-        console.log(res);
+        joinString(res);
       },
-      expect.any(Array));
+      expect.any(String));
   });
 });

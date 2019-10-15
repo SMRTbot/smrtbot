@@ -69,11 +69,19 @@ describe('User me routes', () => {
 
       });
     
-
-
   });
-});
 
-// POST string
-// PUT favorites
-// GET favorites
+  it('deletes a query from favorites', () => {
+    return postQuery(query1)
+      .then(query => {
+        return request
+          .delete(`/api/me/favorites/${query._id}`)
+          .set('Authorization', testUser.token)
+          .expect(200);
+      })
+      .then(({ body }) => {
+        expect(body.length).toBe(0);
+      });
+  });
+
+});
