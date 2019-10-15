@@ -1,4 +1,4 @@
-const { randomAnt } = require('../../lib/middleware/randomAnt');
+const { randomAnt, splitString, arrayMap, joinString } = require('../../lib/middleware/randomAnt');
 const { dropCollection } = require('../db');
 
 describe('randomAnt', () => {
@@ -11,5 +11,15 @@ describe('randomAnt', () => {
       .then(res => {
         expect(res).toEqual(expect.any(String));
       });
+  });
+
+  it('transforms a string', () => {
+    const input = 'the quick brown fox jumped over the lazy dog';
+    const arr = splitString(input);
+    return arrayMap(arr, randomAnt)
+      .then(res => {
+        joinString(res);
+      },
+      expect.any(String));
   });
 });
