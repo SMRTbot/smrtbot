@@ -89,6 +89,7 @@ describe('Tests roles and ensure-role functionality', () => {
         expect(body[0]).toMatchInlineSnapshot(
           {
             _id: expect.any(String),
+            input: expect.any(String),
             userRef: expect.any(String),
             output: expect.any(String)
           },
@@ -97,7 +98,7 @@ describe('Tests roles and ensure-role functionality', () => {
           Object {
             "__v": 0,
             "_id": Any<String>,
-            "input": "This is query one",
+            "input": Any<String>,
             "output": Any<String>,
             "userRef": Any<String>,
           }
