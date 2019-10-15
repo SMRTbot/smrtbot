@@ -13,6 +13,7 @@ describe('Tests roles and ensure-role functionality', () => {
 
   const query1 = {
     input: 'This is our string',
+    output: ''
   };
 
   function postQuery(query) {
@@ -23,7 +24,8 @@ describe('Tests roles and ensure-role functionality', () => {
       .expect(200)
       .then(({ body }) => body);
   }
-  it.only('post query to db', () => {
+
+  it('post query to db', () => {
     return postQuery(query1)
       .then(query => {
         return request
@@ -36,9 +38,19 @@ describe('Tests roles and ensure-role functionality', () => {
           {
             ...body,
             _id: expect.any(String),
-            userRef: expect.any(String)
+            userRef: expect.any(String),
+            output: expect.any(String)
           },
 
+          `
+          Object {
+            "__v": 0,
+            "_id": Any<String>,
+            "input": "This is our string",
+            "output": Any<String>,
+            "userRef": Any<String>,
+          }
+        `
         );
       });
   });
@@ -85,8 +97,8 @@ describe('Tests roles and ensure-role functionality', () => {
           Object {
             "__v": 0,
             "_id": Any<String>,
-            "input": "This is query one",
-            "output": "This is our output string.",
+            "input": "This is query two",
+            "output": "This is enquiry 2",
             "userRef": Any<String>,
           }
         `
