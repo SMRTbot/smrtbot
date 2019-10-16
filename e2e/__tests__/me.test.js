@@ -14,6 +14,7 @@ describe('User me routes', () => {
   const query1 = {
     input: 'This is our string'
   };
+  
   const query2 = {
     input: 'This is another string'
   };
@@ -64,9 +65,7 @@ describe('User me routes', () => {
                   });
               });
           });
-
       });
-    
   });
 
   it('deletes a query from favorites', () => {
@@ -81,5 +80,4 @@ describe('User me routes', () => {
         expect(body.length).toBe(0);
       });
   });
-
 });

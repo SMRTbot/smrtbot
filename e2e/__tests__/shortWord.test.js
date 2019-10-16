@@ -12,7 +12,4 @@ describe('shortWord', () => {
         expect(res).toEqual('edible');
       });
   });
-
-
-
 });
