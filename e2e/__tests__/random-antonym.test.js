@@ -1,6 +1,6 @@
-const randomAnt = require('../../lib/middleware/randomAnt');
+const randomAnt = require('../../lib/middleware/random-antonym');
 const { dropCollection } = require('../db');
-const { splitString, arrayMap, joinString } = require('../../lib/middleware/randomWord');
+const { splitString, arrayMap, joinString } = require('../../lib/middleware/random-word');
 
 describe('randomAnt', () => {
   beforeEach(() => dropCollection('users'));
