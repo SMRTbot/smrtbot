@@ -1,4 +1,5 @@
-const { randomWord, splitString, joinString, arrayMap } = require('../../lib/middleware/random-word');
+const { splitString, joinString, arrayMap } = require('../../util/helper-functions');
+const randomWord = require('../../lib/middleware/random-word');
 const { dropCollection } = require('../db');
 
 describe('randomWord', () => {
