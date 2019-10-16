@@ -6,22 +6,6 @@ describe('randomWord', () => {
   beforeEach(() => dropCollection('users'));
   beforeEach(() => dropCollection('queries'));
 
-  it('returns a random synonym', () => {
-    let word = 'hot';
-    return randomWord(word)
-      .then(res => {
-        expect(res).toEqual(expect.any(String));
-      });
-  });
-
-  it('expect the', () => {
-    let word = 'the';
-    return randomWord(word)
-      .then(res => {
-        expect(res).toEqual(word);
-      });
-  });
-
   it('splits a sentence into words', () => {
     const sentence = 'this is a random sentence';
     const result = splitString(sentence);
