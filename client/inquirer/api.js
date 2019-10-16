@@ -3,12 +3,7 @@ const inquirer = require('inquirer');
 
 const BASE_URL = 'https://smrtbot.herokuapp.com';
 
-const data = {
-  email: null,
-  password: null
-};
-
-const token = null;
+// const token = null;
 
 const authQuestion = [
   {
@@ -29,17 +24,25 @@ const signUpPrompt = () => {
       if(!email || !password) {
         return require('./client')();
       }
+      return request
+        .post(`${BASE_URL}/api/auth/signup`)
+        .send({ email, password });
     });
-  return request
-    .post(`${BASE_URL}/api/auth/signup`)
-    .send(data)
-    .then(({ body }) => body)
-    .then(user => {
-      user.token = token;
-    });
+};
 
+const signInPrompt = () => {
+  inquirer.prompt(authQuestion)
+    .then(({ email, password }) => {
+      if(!email || password) {
+        return require('./client')();
+      }
+      return request
+        .post(`${BASE_URL}/api/auth/signin`)
+        .send({ email, password });
+    });
 };
 
 module.exports = {
-  signUpPrompt
+  signUpPrompt,
+  signInPrompt
 };
