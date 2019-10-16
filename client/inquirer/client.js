@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { signUpPrompt, signInPrompt } = require('./api');
+const { signUpPrompt, signInPrompt } = require('./start');
 
 const startQuestion = [
   {
@@ -22,3 +22,4 @@ const client = () => inquirer.prompt(startQuestion).then(response => {
 });
 
 module.exports = client;
+

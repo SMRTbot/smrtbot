@@ -21,12 +21,10 @@ const authQuestion = [
 const signUpPrompt = () => {
   inquirer.prompt(authQuestion)
     .then(({ email, password }) => {
-      if(!email || !password) {
-        return require('./client')();
-      }
       return request
         .post(`${BASE_URL}/api/auth/signup`)
-        .send({ email, password });
+        .send({ email, password })
+        .then(res => mainMenu(res.body));
     });
 };
 
