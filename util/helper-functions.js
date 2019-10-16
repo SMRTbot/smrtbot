@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-escape */
+
+
 function splitString(input) {
   return input.split(' ');
 }
@@ -13,7 +16,8 @@ function arrayMap(input, filter) {
 }
 
 function transform(input, filter) {
-  const words = splitString(input);
+  const cleanInput = input.replace(/[.,\/#!$%\^&*;:{}=\-_`~()\?]/g, '');
+  const words = splitString(cleanInput);
   return arrayMap(words, filter)
     .then(transformedWords => {
       return joinString(transformedWords);
