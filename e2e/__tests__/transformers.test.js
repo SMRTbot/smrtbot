@@ -2,9 +2,9 @@ const request = require('../request');
 const { dropCollection } = require('../db');
 const { signupAdmin } = require('../../lib/middleware/signup-admin');
 const { splitString, arrayMap, joinString } = require('../../util/helper-functions');
-const randomWord = require('../../lib/middleware/random-word');
-const randomAnt = require('../../lib/middleware/random-antonym');
-const shortWord = require('../../lib/middleware/short-word');
+const randomWord = require('../../lib/services/random-word');
+const randomAnt = require('../../lib/services/random-antonym');
+const shortWord = require('../../lib/services/short-word'); 
 
 describe('transform functions middleware', () => {
   beforeEach(() => dropCollection('users'));
@@ -65,7 +65,8 @@ describe('transform functions middleware', () => {
     });
 
     const query = {
-      input: 'She sells seashells by the seashore'
+      input: 'She sells seashells by the seashore',
+      filter: 'sound'
     };
 
     function postQuery(query) {
