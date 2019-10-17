@@ -1,9 +1,11 @@
 const request = require('superagent');
 const inquirer = require('inquirer');
+const mainMenu = require('./main-menu');
+const client = require('./client');
 
 const BASE_URL = 'https://smrtbot.herokuapp.com';
 
-// const token = null;
+let user = null;
 
 const authQuestion = [
   {
@@ -32,14 +34,22 @@ const signInPrompt = () => {
   inquirer.prompt(authQuestion)
     .then(({ email, password }) => {
       if(!email || password) {
-        return require('./client')();
+        return client();
       }
       return request
         .post(`${BASE_URL}/api/auth/signin`)
-        .send({ email, password });
+        .send({ email, password })
+        .then(res => {
+          if(res.body.status === 401) {
+            console.log('Unauthorized');
+            return client();
+          }
+          user = res.body;
+          return mainMenu(res.body);
+        });
     });
-};
 
+};
 module.exports = {
   signUpPrompt,
   signInPrompt
