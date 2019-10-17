@@ -1,10 +1,6 @@
 const { signupUser, signupAdmin } = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const { dropCollection } = require('../db');
-// const jwt = require('jsonwebtoken');
-
-
-
 
 describe('Tests roles and ensure-role functionality', () => {
   beforeEach(() => dropCollection('users'));
@@ -14,13 +10,12 @@ describe('Tests roles and ensure-role functionality', () => {
   beforeEach(() => {
     return signupAdmin().then(user => (adminUser = user));
   });
+
   let testUser = null;
   beforeEach(() => {
     return signupUser().then(user => (testUser = user)
     );
   });
-
-
 
   it('Makes a user an Admin', () => {
     return request
@@ -30,7 +25,6 @@ describe('Tests roles and ensure-role functionality', () => {
       .then(({ body }) => {
         expect(body.roles[0]).toBe('admin');
       });
-
   });
 
   it('Allows admin to delete user', () => {
@@ -56,9 +50,7 @@ describe('Tests roles and ensure-role functionality', () => {
               .expect(200)
               .then(({ body }) => {
                 expect(body.roles).toEqual([]);
-
               });
-
           });
       });
   });
@@ -72,5 +64,4 @@ describe('Tests roles and ensure-role functionality', () => {
         expect(body.length).toBe(2);
       });
   });
-
 });

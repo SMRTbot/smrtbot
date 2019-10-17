@@ -1,33 +1,24 @@
-const { randomWord, splitString, joinString, arrayMap } = require('../../lib/middleware/randomWord');
-// const { signupAdmin } = require('../../lib/middleware/signup-admin');
-// const request = require('../request');
+const { splitString, joinString, arrayMap } = require('../../util/helper-functions');
+const randomWord = require('../../lib/services/random-word');
 const { dropCollection } = require('../db');
+jest.mock('datamuse', ()=> {
+  return { words: ()=> {
+    return Promise.resolve([
+      {
+        'word': 'test',
+        'score': 1840
+      },
+      {
+        'word': 'test',
+        'score': 1190
+      }
+    ]);
+  } };
+});
 
 describe('randomWord', () => {
   beforeEach(() => dropCollection('users'));
   beforeEach(() => dropCollection('queries'));
-
-  // let adminUser = null;
-  // beforeEach(() => {
-  //   return signupAdmin().then(user => (adminUser = user));
-  // });
-
-  it('returns a random synonym', () => {
-
-    let word = 'hot';
-    return randomWord(word)
-      .then(res => {
-        expect(res).toEqual(expect.any(String));
-      });
-  });
-
-  it('expect the', () => {
-    let word = 'the';
-    return randomWord(word)
-      .then(res => {
-        expect(res).toEqual(word);
-      });
-  });
 
   it('splits a sentence into words', () => {
     const sentence = 'this is a random sentence';

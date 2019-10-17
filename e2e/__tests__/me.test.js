@@ -1,6 +1,20 @@
 const { signupUser } = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const db = require('../db');
+jest.mock('datamuse', ()=> {
+  return { words: ()=> {
+    return Promise.resolve([
+      {
+        'word': 'test',
+        'score': 1840
+      },
+      {
+        'word': 'test',
+        'score': 1190
+      }
+    ]);
+  } };
+});
 
 describe('User me routes', () => {
   beforeEach(() => db.dropCollection('users'));
@@ -14,6 +28,7 @@ describe('User me routes', () => {
   const query1 = {
     input: 'This is our string'
   };
+
   const query2 = {
     input: 'This is another string'
   };
@@ -64,9 +79,7 @@ describe('User me routes', () => {
                   });
               });
           });
-
       });
-    
   });
 
   it('deletes a query from favorites', () => {
@@ -81,5 +94,4 @@ describe('User me routes', () => {
         expect(body.length).toBe(0);
       });
   });
-
 });
