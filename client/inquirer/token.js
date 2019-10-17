@@ -4,7 +4,7 @@ let token = null;
 
 const getToken = () => token;
 
-const setToken = () => newToken => {
+const setToken = newToken => {
   token = newToken;
 };
 
