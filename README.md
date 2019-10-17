@@ -21,7 +21,20 @@ John, Kam, Phil, Ollie
 
 #### Running the app
 //open inquirer and follow prompts
-//funny, antonym, smart, short, sound, spelling, rhyme, homophone, vowels, gracioso
+
+**Filter Options:**
+
+ * antonym - random antonyms
+ * funny - random synonyms
+ * gracioso - spanish-to-spanish
+ * homophone - sound-alikes
+ * rhyme - rhyming words
+ * short - shortest synonym
+ * smart - longest synonym
+ * sound - words with similar sounds
+ * spelling - words with similar letters
+ * vowels - words with different vowels, same consonant sounds
+
 
 **Scripts**
 
