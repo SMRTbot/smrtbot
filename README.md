@@ -4,11 +4,9 @@
 John, Kam, Phil, Ollie
 
 ### Links and Resources
-* [submission PR](http://xyz.com)
-
+* [submission PR](https://github.com/SMRTbot/smrtbot/pull/19)
 * [Travis](https://travis-ci.org/SMRTbot)
-* [Heroku back-end](https://smrtbot.herokuapp.com)
-
+* [Heroku](https://smrtbot.herokuapp.com)
 * [front-end](http://xyz.com) (when applicable)
 
 #### Documentation
@@ -19,7 +17,7 @@ John, Kam, Phil, Ollie
 * `PORT` 3000
 * [MONGODB_URI](mongodb://heroku_x8t5gc5s:kj8u60bhkjr2r6v4mme5la18i7@ds149335.mlab.com:49335/heroku_x8t5gc5s)
 
-#### Running the app
+### Running the app
 //open inquirer and follow prompts
 
 **Filter Options:**
