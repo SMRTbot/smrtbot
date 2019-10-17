@@ -21,6 +21,7 @@ John, Kam, Phil, Ollie
 
 #### Running the app
 //open inquirer and follow prompts
+//funny, antonym, smart, short, sound, spelling, rhyme, homophone, vowels, gracioso
 
 **Describe what npm scripts do**
 (hint: `npm run` from command line will give you list, paste here and change
