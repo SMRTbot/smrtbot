@@ -4,7 +4,21 @@ const { signupAdmin } = require('../../lib/middleware/signup-admin');
 const { splitString, arrayMap, joinString } = require('../../util/helper-functions');
 const randomWord = require('../../lib/services/random-word');
 const randomAnt = require('../../lib/services/random-antonym');
-const shortWord = require('../../lib/services/short-word'); 
+const shortWord = require('../../lib/services/short-word');
+jest.mock('datamuse', ()=> {
+  return { words: ()=> {
+    return Promise.resolve([
+      {
+        'word': 'test',
+        'score': 1840
+      },
+      {
+        'word': 'test',
+        'score': 1190
+      }
+    ]);
+  } };
+});
 
 describe('transform functions middleware', () => {
   beforeEach(() => dropCollection('users'));
@@ -53,7 +67,7 @@ describe('transform functions middleware', () => {
       let word = 'victuals';
       return shortWord(word)
         .then(res => {
-          expect(res).toEqual('edible');
+          expect(res).toEqual(expect.any(String));
         });
     });
   });
