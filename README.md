@@ -3,16 +3,16 @@
 ## Authors
 John, Kam, Phil, Ollie
 
-
 ### Links and Resources
 * [submission PR](http://xyz.com)
-* [travis](https://travis-ci.org/SMRTbot)
-* [back-end](https://smrtbot.herokuapp.com)
+
+* [Travis](https://travis-ci.org/SMRTbot)
+* [Heroku back-end](https://smrtbot.herokuapp.com)
+
 * [front-end](http://xyz.com) (when applicable)
 
 #### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](http://xyz.com) (Server assignments)
+* [Datamuse api docs](http://www.datamuse.com/api/)
 
 ### Setup
 #### `.env` requirements
@@ -20,11 +20,19 @@ John, Kam, Phil, Ollie
 * [MONGODB_URI](mongodb://heroku_x8t5gc5s:kj8u60bhkjr2r6v4mme5la18i7@ds149335.mlab.com:49335/heroku_x8t5gc5s)
 
 #### Running the app
-//open inquirer and follow prompts
+Open terminal, run inquirer, and follow prompts
 
-**Describe what npm scripts do**
-(hint: `npm run` from command line will give you list, paste here and change
-command to description)
+**Scripts**
+
+  * pretest: npm run lint
+  * test: npm run jest
+  * start: node server.js
+  * lint: eslint .
+  * jest: jest --runInBand
+  * test: coverage: npm run test -- --coverage
+  * test:watch: npm run jest -- --watchAll
+  * test:verbose: npm run test -- --verbose
+  * start:watch: nodemon server.js
   
 #### Tests
 Any additional testing information
