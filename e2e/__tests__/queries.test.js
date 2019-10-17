@@ -1,6 +1,20 @@
 const { signupAdmin } = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const db = require('../db');
+jest.mock('datamuse', ()=> {
+  return { words: ()=> {
+    return Promise.resolve([
+      {
+        'word': 'test',
+        'score': 1840
+      },
+      {
+        'word': 'test',
+        'score': 1190
+      }
+    ]);
+  } };
+});
 
 describe('Tests roles and ensure-role functionality', () => {
   beforeEach(() => db.dropCollection('users'));
@@ -12,9 +26,16 @@ describe('Tests roles and ensure-role functionality', () => {
   });
 
   const query1 = {
-    input: 'This is our string'
+    input: 'This is our string',
+    output: 'this is a mock string'
   };
 
+  // addOutput.mockResolvedValue({
+  //   input: 'This is our string',
+  //   output: 'this is a mock string'
+  // });
+  
+  
   function postQuery(query) {
     return request
       .post('/api/queries')
@@ -72,10 +93,6 @@ describe('Tests roles and ensure-role functionality', () => {
       postQuery({
         input: 'This is query two',
         output: 'This is our output string.'
-      }),
-      postQuery({
-        input: 'This is query three',
-        output: 'This is our output string.'
       })
     ])
       .then(() => {
@@ -85,7 +102,7 @@ describe('Tests roles and ensure-role functionality', () => {
           .expect(200);
       })
       .then(({ body }) => {
-        expect(body.length).toBe(3);
+        expect(body.length).toBe(2);
         expect(body[0]).toMatchInlineSnapshot(
           {
             _id: expect.any(String),
