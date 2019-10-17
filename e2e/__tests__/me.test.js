@@ -1,6 +1,20 @@
 const { signupUser } = require('../../lib/middleware/signup-admin');
 const request = require('../request');
 const db = require('../db');
+jest.mock('datamuse', ()=> {
+  return { words: ()=> {
+    return Promise.resolve([
+      {
+        'word': 'test',
+        'score': 1840
+      },
+      {
+        'word': 'test',
+        'score': 1190
+      }
+    ]);
+  } };
+});
 
 describe('User me routes', () => {
   beforeEach(() => db.dropCollection('users'));
