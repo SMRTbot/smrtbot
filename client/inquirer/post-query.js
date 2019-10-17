@@ -1,8 +1,8 @@
 const request = require('superagent');
 const inquirer = require('inquirer');
 const { getToken } = require('./token');
-
-const BASE_URL = 'https://smrtbot.herokuapp.com';
+require('dotenv').config();
+const BASE_URL = process.env.BASE_URL;
 
 const queryQuestions = [
   {
@@ -14,7 +14,7 @@ const queryQuestions = [
     type: 'list',
     name: 'filter',
     message: 'Select a method you would like me to use to transform: ',
-    choices: ['smart', 'short', 'antonym', 'funny', 'sound']
+    choices: ['smart', 'short', 'antonym', 'funny', 'sound', 'spelling', 'rhyme', 'homophone', 'vowels', 'gracioso']
   }
 ];
 
@@ -40,8 +40,8 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
         .put(`${BASE_URL}/api/me/favorites/${body._id}`)
         .set('Authorization', getToken())
         .send({ favorites: response.favorites })
-        .then(res => {
-          console.log(res.body);
+        .then(() => {
+          console.log('Saved!');
         });
     });
   });

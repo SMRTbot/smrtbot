@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const { filter } = require('./post-query');
 // const request = require('superagent');
+const favoriteList = require('./favorites');
 
 
 const menuQuestions = [
@@ -17,7 +18,7 @@ const mainMenu = () => inquirer.prompt(menuQuestions).then((answers) => {
     case 'New Query':
       return filter().then(mainMenu); // Link to Post Query route
     case 'Favorites':
-      return require(); //Favorites route
+      return favoriteList().then(mainMenu); //Favorites route
     case 'About Us':
       return require(); //About Us Route
   }
