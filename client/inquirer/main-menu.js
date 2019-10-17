@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const postQuery = require('./post-query');
 // const request = require('superagent');
 
 
@@ -14,7 +15,7 @@ const menuQuestions = [
 module.exports = () => inquirer.prompt(menuQuestions).then(({ answers }) => {
   switch(answers) {
     case 'New Query':
-      return require('./post-query'); // Link to Post Query route
+      return postQuery(answers); // Link to Post Query route
     case 'Favorites':
       return require(); //Favorites route
     case 'About Us':

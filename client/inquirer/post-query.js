@@ -15,7 +15,7 @@ const queryQuestions = [
   {
     type: 'list',
     name: 'filter',
-    message: 'Select a method you would like to transform: ',
+    message: 'Select a method you would like me to use to transform: ',
     choices: ['smart', 'short', 'antonym', 'funny', 'sound']
   }
 ];
@@ -26,7 +26,7 @@ module.exports = () => inquirer.prompt(queryQuestions).then(async({ input, filte
     .send({ input, filter })
     .set('Authorization', token);
   console.log(res.body.input);
-  console.log('_-_-_- turned into -_-_-_-_');
+  console.log('<p>_-_-_- turned into -_-_-_-_<p>');
   console.log(res.body.output);
     
 });

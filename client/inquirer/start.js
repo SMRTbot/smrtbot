@@ -28,7 +28,6 @@ const signUpPrompt = () => {
         .send({ email, password })
         .then(res => {
           setToken(res.body.token);
-          console.log(res.body.token);
           return mainMenu(res.body);
         });
     });
