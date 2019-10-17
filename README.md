@@ -33,9 +33,8 @@ Open terminal, run inquirer, and follow prompts
   * test:watch: npm run jest -- --watchAll
   * test:verbose: npm run test -- --verbose
   * start:watch: nodemon server.js
-  
-#### Tests
-Any additional testing information
 
 #### UML
-Link to an image of the UML for your application and response to events
+
+![Front-end](./assets/front-end.jpg)
+![Back-end](./assets/back-end.png)
