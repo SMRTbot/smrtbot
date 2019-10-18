@@ -3,12 +3,13 @@ const inquirer = require('inquirer');
 const { getToken } = require('./token');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
+const chalk = require('chalk');
 
 const queryQuestions = [
   {
     type: 'input',
     name: 'input',
-    message: 'Enter a phrase you would like us to make SMRTer'
+    message: 'Enter a phrase you would like us to make SMRTer: '
   },
   {
     type: 'list',
@@ -30,7 +31,7 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
     .set('Authorization', getToken())
     .send({ input: response.input, filter: response.filter })
     .then(res => {
-      console.log(res.body.output); 
+      console.log(chalk.red(res.body.output)); 
       return res.body;
     });
 })
@@ -41,7 +42,7 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
         .set('Authorization', getToken())
         .send({ favorites: response.favorites })
         .then(() => {
-          console.log('Saved!');
+          console.log(chalk.green('Saved!'));
         });
     });
   });
