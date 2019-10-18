@@ -36,15 +36,16 @@ John, Kam, Phil, Ollie
 
 **Scripts**
 
-  * pretest: npm run lint
-  * test: npm run jest
-  * start: node server.js
-  * lint: eslint .
-  * jest: jest --runInBand
-  * test: coverage: npm run test -- --coverage
-  * test:watch: npm run jest -- --watchAll
-  * test:verbose: npm run test -- --verbose
-  * start:watch: nodemon server.js
+  * pretest: `npm run lint`
+  * test: `npm run jest`
+  * start: `node server.js`
+  * lint: `eslint .`
+  * jest: `jest --runInBand`
+  * test: `coverage: npm run test -- --coverage`
+  * test:watch: `npm run jest -- --watchAll`
+  * test:verbose: `npm run test -- --verbose`
+  * start:watch: `nodemon server.js`
+  * SMRTbot: `./client/inquirer/index.js`
 
 #### UML
 
