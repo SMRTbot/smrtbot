@@ -1,6 +1,6 @@
 # SMRT Bot
 
-## Authors 
+## Authors
 John, Kam, Phil, Ollie
 
 ### Links and Resources
@@ -16,7 +16,6 @@ John, Kam, Phil, Ollie
 #### `.env` requirements
 * `PORT` 3000
 * [MONGODB_URI](mongodb://heroku_x8t5gc5s:kj8u60bhkjr2r6v4mme5la18i7@ds149335.mlab.com:49335/heroku_x8t5gc5s)
-* BASE_URL=https://smrtbot.herokuapp.com
 
 ### Running the app
 //open inquirer and follow prompts
@@ -37,15 +36,16 @@ John, Kam, Phil, Ollie
 
 **Scripts**
 
-  * pretest: npm run lint
-  * test: npm run jest
-  * start: node server.js
-  * lint: eslint .
-  * jest: jest --runInBand
-  * test: coverage: npm run test -- --coverage
-  * test:watch: npm run jest -- --watchAll
-  * test:verbose: npm run test -- --verbose
-  * start:watch: nodemon server.js
+  * pretest: `npm run lint`
+  * test: `npm run jest`
+  * start: `node server.js`
+  * lint: `eslint .`
+  * jest: `jest --runInBand`
+  * test: `coverage: npm run test -- --coverage`
+  * test:watch: `npm run jest -- --watchAll`
+  * test:verbose: `npm run test -- --verbose`
+  * start:watch: `nodemon server.js`
+  * SMRTbot: `./client/inquirer/index.js`
 
 #### UML
 
