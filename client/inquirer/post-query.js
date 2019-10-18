@@ -31,7 +31,8 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
     .set('Authorization', getToken())
     .send({ input: response.input, filter: response.filter })
     .then(res => {
-      console.log(chalk.red(res.body.output)); 
+      console.log(chalk.red(res.body.input));
+      console.log(chalk.green(res.body.output)); 
       return res.body;
     });
 })
