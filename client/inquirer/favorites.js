@@ -42,8 +42,7 @@ const favoritesList = () => {
             return request
               .delete(`${BASE_URL}/api/me/favorites/${deleteId}`)
               .set('Authorization', getToken())
-              .then(res => {
-                console.log(res.body);
+              .then(() => {
                 console.log(chalk.yellow('Deleted!'));
               });
           });
