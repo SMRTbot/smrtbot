@@ -26,7 +26,6 @@ const confirm = [{
 }];
 
 const filter = () => inquirer.prompt(queryQuestions).then(response => {
-  
   return request
     .post(`${BASE_URL}/api/queries`)
     .set('Authorization', getToken())
@@ -35,21 +34,25 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
       console.log(chalk.red(res.body.input));
       console.log(chalk.green(res.body.output)); 
       return res.body;
+    })
+    .then((body) => {
+      return inquirer.prompt(confirm).then(response => {
+        if(response.favorites === true) {
+          return request
+            .put(`${BASE_URL}/api/me/favorites/${body._id}`)
+            .set('Authorization', getToken())
+            .send({ favorites: response.favorites })
+            .then(() => {
+              console.log(chalk.green('Saved!'));
+            });
+        }
+        else {
+          console.log(chalk.red('Not Saved. . .'));
+        }   
+      });
     });
-})
-//Only hit this route if Confirmed Save
-  .then((body) => {
-    return inquirer.prompt(confirm).then(response => {
-      return request
-        .put(`${BASE_URL}/api/me/favorites/${body._id}`)
-        .set('Authorization', getToken())
-        .send({ favorites: response.favorites })
-        .then(() => {
-          console.log(chalk.green('Saved!'));
-        });
-    });
-  });
-  
+});
+
 module.exports = {
   filter,
 }; 
