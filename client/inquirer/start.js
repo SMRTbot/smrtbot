@@ -2,10 +2,9 @@ const request = require('superagent');
 const inquirer = require('inquirer');
 const mainMenu = require('./main-menu');
 const client = require('./client');
-const { setToken } = require('./token');
-
-
-const BASE_URL = 'https://smrtbot.herokuapp.com';
+const { setToken, setUser } = require('./token');
+require('dotenv').config();
+const BASE_URL = process.env.BASE_URL;
 
 const authQuestion = [
   {
@@ -21,20 +20,21 @@ const authQuestion = [
 ];
 
 const signUpPrompt = () => {
-  inquirer.prompt(authQuestion)
+  return inquirer.prompt(authQuestion)
     .then(({ email, password }) => {
       return request
         .post(`${BASE_URL}/api/auth/signup`)
         .send({ email, password })
         .then(res => {
           setToken(res.body.token);
+          setUser(res.body._id);
           return mainMenu(res.body);
         });
     });
 };
 
 const signInPrompt = () => {
-  inquirer.prompt(authQuestion)
+  return inquirer.prompt(authQuestion)
     .then(({ email, password }) => {
       return request
         .post(`${BASE_URL}/api/auth/signin`)
@@ -45,11 +45,12 @@ const signInPrompt = () => {
             return client();
           }
           setToken(res.body.token);
+          setUser(res.body._id);
           return mainMenu(res.body);
         });
     });
-
 };
+
 module.exports = {
   signUpPrompt,
   signInPrompt
