@@ -25,6 +25,7 @@ const confirm = [{
 }];
 
 const filter = () => inquirer.prompt(queryQuestions).then(response => {
+  
   return request
     .post(`${BASE_URL}/api/queries`)
     .set('Authorization', getToken())
@@ -34,6 +35,7 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
       return res.body;
     });
 })
+//Only hit this route if Confirmed Save
   .then((body) => {
     return inquirer.prompt(confirm).then(response => {
       return request
