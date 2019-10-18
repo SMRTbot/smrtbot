@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const { filter } = require('./post-query');
 // const request = require('superagent');
 const favoriteList = require('./favorites');
-
+const about = require('./about-us');
 
 const menuQuestions = [
   {
@@ -20,7 +20,7 @@ const mainMenu = () => inquirer.prompt(menuQuestions).then((answers) => {
     case 'Favorites':
       return favoriteList().then(mainMenu); //Favorites route
     case 'About Us':
-      return require(); //About Us Route
+      return about().then(mainMenu); //About Us Route
   }
 });
 
