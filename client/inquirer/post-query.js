@@ -33,6 +33,7 @@ const filter = () => inquirer.prompt(queryQuestions).then(response => {
     .then(res => {
       console.log(chalk.red('----You Said---------------'));
       console.log(chalk.red(res.body.input));
+      console.log(chalk.blue('\n'));
       console.log(chalk.green('----SMRTbot Suggests-------'));
       console.log(chalk.green(res.body.output)); 
       console.log(chalk.blue('---------------------------'));
